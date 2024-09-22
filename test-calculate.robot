@@ -14,6 +14,14 @@ Get Calculation JSON
     # Get the response content as a JSON object
     RETURN    ${resp.json()}
 
+Get Plus Operation
+    [Arguments]    ${num1}    ${num2}
+
+    ${resp}=     GET    http://127.0.0.1:5000/plus/${num1}/${num2}
+
+    Should Be Equal    ${resp.status_code}    ${200}
+
+    RETURN    ${resp.json()}
 
 *** Test Cases ***
 Test Calculate Numbers 4 and 2 (ฺBefore Using Keywords)
@@ -94,3 +102,9 @@ Test Calculate Numbers 8.4 and 4
 
     # Verify the response of divide operation
     Should Be Equal    ${json_resp['divide']}    ${2.1}
+
+Test Plus Operation 5 and 6
+
+    ${json_resp}=    Get Plus Operation    ${5}    ${6}
+
+    Should Be Equal    ${json_resp['result']}    ${11}
