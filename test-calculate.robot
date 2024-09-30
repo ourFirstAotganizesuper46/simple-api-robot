@@ -108,3 +108,13 @@ Test Plus Operation 5 and 6
     ${json_resp}=    Get Plus Operation    ${5}    ${6}
 
     Should Be Equal    ${json_resp['result']}    ${11}
+
+Test Is Prime Number 17
+
+    ${resp}=     GET    http://localhost:5000/is_prime/17
+
+    Should Be Equal    ${resp.status_code}    ${200}
+
+    ${json_resp}=    Set Variable    ${resp.json()}
+
+    Should Be Equal    ${json_resp['result']}    ${true}
