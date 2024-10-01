@@ -129,6 +129,16 @@ Test Is Prime Number 36
 
     Should Be Equal    ${json_resp['result']}    ${false}
 
+Test Is Prime Number 13219
+
+    ${resp}=     GET    http://localhost:5000/is_prime/13219
+
+    Should Be Equal    ${resp.status_code}    ${200}
+
+    ${json_resp}=    Set Variable    ${resp.json()}
+
+    Should Be Equal    ${json_resp['result']}    ${true}
+
 Test Is fibonacci Number 3
 
     ${resp}=     GET    http://localhost:5000/is_fibonacci/3
