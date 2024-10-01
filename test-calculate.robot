@@ -118,3 +118,33 @@ Test Is Prime Number 17
     ${json_resp}=    Set Variable    ${resp.json()}
 
     Should Be Equal    ${json_resp['result']}    ${true}
+
+Test Is fibonacci Number 3
+
+    ${resp}=     GET    http://localhost:5000/is_fibonacci/3
+
+    Should Be Equal    ${resp.status_code}    ${200}
+
+    ${json_resp}=    Set Variable    ${resp.json()}
+
+    Should Be Equal    ${json_resp['result']}    ${true}
+
+Test Is fibonacci Number 4
+    
+    ${resp}=     GET    http://localhost:5000/is_fibonacci/4
+
+    Should Be Equal    ${resp.status_code}    ${200}
+
+    ${json_resp}=    Set Variable    ${resp.json()}
+
+    Should Be Equal    ${json_resp['result']}    ${false}
+
+Test Is fibonacci Number 5
+    
+    ${resp}=     GET    http://localhost:5000/is_fibonacci/5
+
+    Should Be Equal    ${resp.status_code}    ${200}
+
+    ${json_resp}=    Set Variable    ${resp.json()}
+
+    Should Be Equal    ${json_resp['result']}    ${true}
