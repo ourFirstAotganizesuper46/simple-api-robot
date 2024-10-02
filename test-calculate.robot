@@ -23,6 +23,7 @@ Get Plus Operation
 
     RETURN    ${resp.json()}
 
+
 *** Test Cases ***
 Test Calculate Numbers 4 and 2 (ฺBefore Using Keywords)
 
@@ -168,3 +169,35 @@ Test Is fibonacci Number 5
     ${json_resp}=    Set Variable    ${resp.json()}
 
     Should Be Equal    ${json_resp['result']}    ${true}
+
+Test Is Next5 Number 1
+    
+    ${resp}=     GET    http://localhost:5000/next5/1
+
+    Should Be Equal    ${resp.status_code}    ${200}
+
+    ${json_resp}=    Set Variable    ${resp.json()}
+
+    Should Be Equal    ${json_resp['result']}    ${6}
+
+
+Test Is Next5 Number -10
+    
+    ${resp}=     GET    http://localhost:5000/next5/-10
+
+    Should Be Equal    ${resp.status_code}    ${200}
+
+    ${json_resp}=    Set Variable    ${resp.json()}
+
+    Should Be Equal    ${json_resp['result']}    ${-5}
+
+
+Test Is Next5 Number 1.5
+    
+    ${resp}=     GET    http://localhost:5000/next5/1.5
+
+    Should Be Equal    ${resp.status_code}    ${200}
+
+    ${json_resp}=    Set Variable    ${resp.json()}
+
+    Should Be Equal    ${json_resp['result']}    ${6.5}
